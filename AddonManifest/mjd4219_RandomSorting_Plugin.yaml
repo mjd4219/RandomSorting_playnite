@@ -3,10 +3,9 @@ IconUrl: https://raw.githubusercontent.com/mjd4219/RandomSorting_playnite/master
 Type: Generic
 InstallerManifestUrl: https://raw.githubusercontent.com/mjd4219/RandomSorting_playnite/master/InstallerManifest/mjd4219_RandomSorting_Plugin.yaml
 ShortDescription: Generates random identifiers to allow game lists to be sorted randomly. 
-Description: RandomSorting plugin is a work-around to allow game lists to be sorted randomly. The idea is that your lists will feel fresh each time you view the library. It works by generating a random number for each non-hidden game in your library, and assigning this number as either a Category or a Tag. By default, the number is prefixed with '[Random] '. You can then order your list by Category (or by Tag, depending on your configuration), and the list will be sorted in the random order. The plugin can be configured to run each time playnite starts, and/or each time a game is started.   
+Description: This add-on is a work-around to allow game lists to be sorted randomly. The idea is that your lists will feel fresh each time you view the library. It works by generating a random number for each non-hidden game in your library, and assigning this number as either a Category or a Tag (uses Categories by default). You can then order your list by Category (or by Tag, depending on your configuration), and the list will be sorted in a random order. The plugin can be configured to run each time playnite starts, and/or each time a game is started. By default it will not assign any random identifiers until you configure this in the Add-ons settings.  Warning: this plugin generates an individual Category or Tag for each game in your library, which can make it difficult to browse your existing Tags or Categories. To clean up any Tags or Categories created by the plugin, use Library Manager. 
 Name: RandomSorting
 Author: mjd4219
 Links:
     GitHub: https://github.com/mjd4219/RandomSorting_playnite
-    Support: https://playnite.link/forum/thread-283.html
 SourceUrl: https://github.com/mjd4219/RandomSorting_playnite/tree/main/source
