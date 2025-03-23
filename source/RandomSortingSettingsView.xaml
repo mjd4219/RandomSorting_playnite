@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="RandomSorting.RandomSortingSettingsView"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            mc:Ignorable="d">
+    <StackPanel Orientation="Vertical" Margin="10">
+        <CheckBox Content="Update random identifiers on startup" IsChecked="{Binding Settings.UpdateOnStartup}"/>
+        <CheckBox Content="Update random identifiers when a game starts" IsChecked="{Binding Settings.UpdateOnGameStart}"/>
+
+        <TextBlock Text="Apply random identifier to:" Margin="0,10,0,2"/>
+        <ComboBox ItemsSource="{Binding LabelTypeOptions}"
+                  SelectedItem="{Binding Settings.SelectedLabelType}"
+                  Width="90"/>
+        <TextBlock Text="Random Identifier Prefix:" Margin="0,10,0,2"/>
+        <TextBox Text="{Binding RandomPrefix, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
+        <Button Content="Assign Random Identifiers" Command="{Binding AssignRandomIdentifiersCommand}" Margin="0,25,0,0" Width="186" HorizontalAlignment="Left"/>
+    </StackPanel>
+</UserControl>
