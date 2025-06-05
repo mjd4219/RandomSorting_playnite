@@ -21,6 +21,7 @@ namespace RandomSorting
         private bool updateOnGameStart = false;
         private LabelType selectedLabelType = LabelType.Category;
         private string randomPrefix = "[Random] ";
+        private bool includeUninstalledGames = false;
 
         public bool UpdateOnStartup
         {
@@ -45,6 +46,12 @@ namespace RandomSorting
             get => randomPrefix;
             set => SetValue(ref randomPrefix, value);
         }
+
+        public bool IncludeUninstalledGames
+        {
+            get => includeUninstalledGames;
+            set => SetValue(ref includeUninstalledGames, value);
+        }
     }
 
     public class RandomSortingSettingsViewModel : ObservableObject, ISettings
@@ -63,7 +70,6 @@ namespace RandomSorting
             get => settings.RandomPrefix;
             set => settings.RandomPrefix = value;
         }
-
 
         public Array LabelTypeOptions => Enum.GetValues(typeof(LabelType));
 

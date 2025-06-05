@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -80,8 +81,17 @@ namespace RandomSorting
             string prefix = string.IsNullOrWhiteSpace(settings.Settings.RandomPrefix) ? "[Random] " : settings.Settings.RandomPrefix;
 
             logger.Info("Fetching games from the Playnite database...");
-            var games = PlayniteApi.Database.Games.Where(g => !g.Hidden && !string.IsNullOrEmpty(g.InstallDirectory)).ToList();
+
+            var games = PlayniteApi.Database.Games
+                .Where(g => !g.Hidden &&
+                            (settings.Settings.IncludeUninstalledGames || !string.IsNullOrEmpty(g.InstallDirectory)))
+                .ToList();
+
             logger.Info($"Total games to process: {games.Count}");
+
+            var rng = new Random();
+            var allTags = PlayniteApi.Database.Tags.ToList();
+            var allCategories = PlayniteApi.Database.Categories.ToList();
 
             foreach (var game in games)
             {
@@ -89,12 +99,11 @@ namespace RandomSorting
 
                 try
                 {
-                    int randomNumber = new Random().Next(10000, 99999);
+                    int randomNumber = rng.Next(10000, 99999); ;
                     string newLabelName = $"{prefix}{randomNumber}";
 
                     if (labelType == LabelType.Tag)
                     {
-                        var allTags = PlayniteApi.Database.Tags.ToList();
                         var existingTags = allTags.Where(t => game.TagIds?.Contains(t.Id) == true && !t.Name.StartsWith(prefix)).ToList();
                         Tag newTag = allTags.FirstOrDefault(t => t.Name == newLabelName) ?? new Tag { Name = newLabelName };
 
@@ -110,7 +119,6 @@ namespace RandomSorting
                     }
                     else
                     {
-                        var allCategories = PlayniteApi.Database.Categories.ToList();
                         var existingCategories = allCategories.Where(c => game.CategoryIds?.Contains(c.Id) == true && !c.Name.StartsWith(prefix)).ToList();
                         Category newCategory = allCategories.FirstOrDefault(c => c.Name == newLabelName) ?? new Category { Name = newLabelName };
 
