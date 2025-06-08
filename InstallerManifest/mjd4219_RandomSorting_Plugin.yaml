@@ -1,5 +1,11 @@
 AddonId: mjd4219_RandomSorting_Plugin
 Packages:
+  - Version: 1.2
+    RequiredApiVersion: 6.0.0
+    ReleaseDate: 2025-06-08
+    PackageUrl: https://github.com/mjd4219/RandomSorting_playnite/releases/download/1.2/RandomSorting_a6af1255-7acc-4b6d-99f1-661065beb1b9_1_2.pext
+    Changelog:
+      - Performance improvements
   - Version: 1.1
     RequiredApiVersion: 6.0.0
     ReleaseDate: 2025-06-05
